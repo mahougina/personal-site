@@ -4,6 +4,7 @@
   "private": true,
   "description": "A tiny, personal website",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "debug": "node --inspect app.js"
   }
 }

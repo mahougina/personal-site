@@ -10,6 +10,7 @@
   --muted: #827e73;
   --line: #e8e2d9;
   --accent: #4d59dd;
+  --highlight: #f06242;
   --paper: #fffefa;
 }
 
@@ -25,7 +26,9 @@ html {
 
 body {
   width: min(100% - 40px, 1000px);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   margin: 0 auto;
   background: #ebe9de;
   display: flex;
@@ -33,6 +36,7 @@ body {
 }
 
 .site-header {
+  flex: 0 0 auto;
   padding: 35px 0 0;
   text-align: center;
 }
@@ -73,6 +77,20 @@ body {
   max-width: 90%; 
   height: auto;
   border-radius: 50px;
+}
+
+.body-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.body-link:visited {
+  color: var(--highlight);
+}
+
+.body-link:hover {
+  color: var(--ink);
+  transition: color 350ms ease;
 }
 
 .socials {
@@ -127,6 +145,8 @@ main {
 }
 
 .layout-container {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: row; /* Places children side by side */
   gap: 20px;          /* Space between sidebar and main */
@@ -140,12 +160,16 @@ main {
 
 .main-content {
   flex-grow: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   margin-right: 1.5rem;
+  margin-top: 5rem;
 }
 
 .page {
-  padding: 86px 0 48px;
-  animation: appear 220ms ease both;
+  padding: 0px 0 48px;
+  animation: appear 320ms ease both;
 }
 
 .page[hidden] {
@@ -410,6 +434,7 @@ button:disabled {
 }
 
 footer {
+  flex: 0 0 auto;
   padding: 30px 0 38px;
   color: var(--muted);
   font-size: 0.78rem;
