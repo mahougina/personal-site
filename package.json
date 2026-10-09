@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "description": "A tiny, personal website",
+  "homepage": "https://mahougina.github.io/personal-site",
   "scripts": {
     "start": "node server.js",
-    "debug": "node --inspect app.js"
+    "debug": "node --inspect app.js",
+
+    "build": "npm run start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
