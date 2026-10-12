@@ -3,6 +3,8 @@ const authorInput = document.querySelector("#author");
 const contentInput = document.querySelector("#content");
 const message = document.querySelector("#form-message");
 const postsContainer = document.querySelector("#posts");
+const composer = document.querySelector(".composer");
+const staticPostsNote = document.querySelector("#static-posts-note");
 const routeLinks = document.querySelectorAll("[data-route]");
 const pages = document.querySelectorAll(".page");
 const validRoutes = new Set(Array.from(routeLinks, (link) => link.dataset.route));
@@ -152,11 +154,26 @@ function renderPosts(posts) {
 }
 
 async function loadPosts() {
-  const response = await fetch("/api/posts");
-  if (!response.ok) {
+  const apiUrl = new URL("api/posts", document.baseURI);
+  const apiResponse = await fetch(apiUrl);
+
+  if (apiResponse.ok) {
+    renderPosts(await apiResponse.json());
+    return;
+  }
+
+  if (apiResponse.status !== 404) {
     throw new Error("(Unable to load posts)");
   }
-  renderPosts(await response.json());
+
+  const staticResponse = await fetch(new URL("data/posts.json", document.baseURI));
+  if (!staticResponse.ok) {
+    throw new Error("(Unable to load posts)");
+  }
+
+  composer.hidden = true;
+  staticPostsNote.hidden = false;
+  renderPosts(await staticResponse.json());
 }
 
 form.addEventListener("submit", async (event) => {
@@ -168,7 +185,7 @@ form.addEventListener("submit", async (event) => {
   button.disabled = true;
 
   try {
-    const response = await fetch("/api/posts", {
+    const response = await fetch(new URL("api/posts", document.baseURI), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
