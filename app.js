@@ -31,8 +31,6 @@ function renderRoute() {
       let home_intro_1 = "I'm a Software Engineer with roughly 4 years of experience. \
         Focused on mostly fullstack development, I love to find modular and iterative ways to tackle software solutions."
       
-      // let home_intro_2 = "I gratudated with a B.S. in Computer Science from Arizona State University's Ira A. Fulton School of Engineering."
-      
       let home_intro_2 = document.getElementById("home-intro-2");
       let h_link = document.createElement("a");
       h_link.className = "body-link"

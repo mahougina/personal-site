@@ -4,7 +4,7 @@ const path = require("node:path");
 const root = __dirname;
 const output = path.join(root, "dist");
 const files = ["index.html", "styles.css", "app.js"];
-const directories = ["data", "imgs", "svgs"];
+const directories = ["data", "gifs", "imgs", "svgs"];
 
 async function build() {
   await fs.rm(output, { recursive: true, force: true });
