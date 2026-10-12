@@ -40,7 +40,7 @@ function renderRoute() {
       h_link.textContent = "Arizona State University's Ira A. Fulton School of Engineering";
 
       home_intro_2.replaceChildren(
-        document.createTextNode("I gratudated with a B.S. in Computer Science from  "),
+        document.createTextNode("I gratudated as Summa Cum Laude with a B.S. in Computer Science from  "),
         h_link,
         document.createTextNode(".")
       )
